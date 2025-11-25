@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&family=Orbitron:wght@700&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+h1,
+h2 {
+    font-family: 'Orbitron', sans-serif;
+}
+
+.floating {
+    animation: float 6s ease-in-out infinite;
+}
+
+.floating-delay {
+    animation: float 8s ease-in-out infinite 1s;
+}
+
+.floating-slow {
+    animation: float 10s ease-in-out infinite 2s;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-40px) rotate(5deg);
+    }
+}
+
+.product-card {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.product-card:hover {
+    transform: translateY(-20px) scale(1.05);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+}
+
+.rotate-3d {
+    transition: transform 0.6s;
+}
+
+.rotate-3d:hover {
+    transform: rotateY(180deg);
+}
