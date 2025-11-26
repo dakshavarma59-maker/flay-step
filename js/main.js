@@ -23,7 +23,7 @@ document.getElementById('cartBtn').addEventListener('click', () => {
 // Shoe Data with Auto-generated Images & Prices
 const shoeDatabase = [
     // Sneakers
-    { name: "Nike Air Max 270 React", brand: "Nike", type: "sneakers", gender: "men", price: 179, img: "https://source.unsplash.com/random/800x800/?nike,air,max,270" },
+    { name: "Nike Air Max 270 React", brand: "Nike", type: "sneakers", gender: "men", price: 179, img: "https://images.unsplash.com/photo-1562613521-6b5293e5b0ea?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
     { name: "Adidas Ultraboost 23", brand: "Adidas", type: "sneakers", gender: "men", price: 195, img: "https://source.unsplash.com/random/800x800/?adidas,ultraboost" },
     { name: "Air Jordan 1 Retro High", brand: "Jordan", type: "sneakers", gender: "men", price: 220, img: "https://source.unsplash.com/random/800x800/?jordan,red" },
     { name: "Puma RS-X", brand: "Puma", type: "sneakers", gender: "women", price: 130, img: "https://source.unsplash.com/random/800x800/?puma,women" },
