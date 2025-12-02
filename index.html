@@ -2,40 +2,68 @@
 <html lang="en" class="scroll-smooth">
 
 <head>
+
+    <head>
+        <!-- Firebase SDK (ye sabse upar daal do) -->
+        <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+
+        <!-- Baaki head ka code -->
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>FLYSTEP • Premium Shoes Store</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@300;500;700&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FLYSTEP • Premium Shoes Store</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Flip.min.js"></script>
-    <script type="text/javascript">
-        (function (l) {
-            if (l.search[1] === "/") {
-                var decoded = l.search
-                    .slice(1)
-                    .split("&")
-                    .map(function (s) {
-                        return s.replace(/~and~/g, "&");
-                    })
-                    .join("?");
-                window.history.replaceState(
-                    null,
-                    null,
-                    l.pathname.slice(0, -1) + decoded + l.hash
-                );
-            }
-        })(window.location);
-    </script>
-    <link rle="cart.html" href="cart.html">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@300;500;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="style.css">
-    <link rel="package.json" href="package.json">
-    <style>
-        /*internal css*/
-    </style>
+</head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FLYSTEP • Premium Shoes Store</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Flip.min.js"></script>
+<script type="text/javascript">
+    (function (l) {
+        if (l.search[1] === "/") {
+            var decoded = l.search
+                .slice(1)
+                .split("&")
+                .map(function (s) {
+                    return s.replace(/~and~/g, "&");
+                })
+                .join("?");
+            window.history.replaceState(
+                null,
+                null,
+                l.pathname.slice(0, -1) + decoded + l.hash
+            );
+        }
+    })(window.location);
+</script>
+<link rle="cart.html" href="cart.html">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@300;500;700&display=swap"
+    rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="style.css">
+<link rel="package.json" href="package.json">
+<style>
+    /*internal css*/
+</style>
 </head>
 
 <body class="bg-gray-50 dark:bg-black text-gray-900 dark:text-gray-100 transition-colors duration-500">
@@ -46,81 +74,6 @@
                 d="M12 3v1m0 16v1m8-9h-1m-16 0H3m16.485-6.928l-.707.707M6.343 17.657l-.707.707m12.02 0l-.707-.707M6.343 6.343l-.707-.707" />
         </svg>
     </button>
-    <!-- ===== FULL SCREEN SIGN IN / SIGN UP MODAL ===== -->
-    <div id="authModal" class="fixed inset-0 bg-black z-[9999] flex items-center justify-center">
-        <div class="max-w-md w-full mx-4">
-            <div class="bg-white dark:bg-gray-900 rounded-3xl shadow-2xl overflow-hidden">
-                <!-- Logo -->
-                <div class="text-center pt-10 pb-6 bg-gradient-to-br from-purple-600 to-pink-600">
-                    <h1 class="text-6xl font-bold text-white">FLYSTEP</h1>
-                    <p class="text-white text-opacity-90 mt-2">Step Into the Future</p>
-                </div>
-
-                <div class="p-10">
-                    <h2 class="text-3xl font-bold text-center mb-8">Welcome Back 👟</h2>
-
-                    <!-- Tabs -->
-                    <div class="flex mb-8">
-                        <button id="loginTab"
-                            class="flex-1 py-3 text-lg font-semibold border-b-4 border-purple-600 text-purple-600">Sign
-                            In</button>
-                        <button id="signupTab"
-                            class="flex-1 py-3 text-lg font-semibold border-b-4 border-transparent text-gray-500">Sign
-                            Up</button>
-                    </div>
-
-                    <!-- Form -->
-                    <div id="authForm">
-                        <input type="email" placeholder="Email"
-                            class="w-full px-6 py-4 rounded-xl bg-gray-100 dark:bg-gray-800 mb-4 text-lg" required>
-                        <input type="password" placeholder="Password"
-                            class="w-full px-6 py-4 rounded-xl bg-gray-100 dark:bg-gray-800 mb-6 text-lg" required>
-
-                        <button onclick="closeAuthModal()"
-                            class="w-full py-5 bg-gradient-to-r from-purple-600 to-pink-600 text-white text-xl font-bold rounded-xl hover:scale-105 transition transform">
-                            Continue Shopping
-                        </button>
-
-                        <div class="text-center mt-6">
-                            <button onclick="closeAuthModal()" class="text-gray-500 hover:text-purple-600 underline">
-                                Skip for now →
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Ye script bhi body ke end mein daal do (main.js se pehle) -->
-    <script>
-        function closeAuthModal() {
-            document.getElementById('authModal').style.display = 'none';
-            // Agar user pehli baar aaya hai to localStorage mein mark kar do taaki dobara na dikhe
-            localStorage.setItem('flystepVisited', 'true');
-        }
-
-        // Agar user pehle aa chuka hai to modal hide kar do
-        window.onload = function () {
-            if (localStorage.getItem('flystepVisited') === 'true') {
-                document.getElementById('authModal').style.display = 'none';
-            }
-        }
-
-        // Tab switching (optional swag)
-        document.getElementById('loginTab').addEventListener('click', () => {
-            document.getElementById('loginTab').classList.add('border-purple-600', 'text-purple-600');
-            document.getElementById('loginTab').classList.remove('border-transparent', 'text-gray-500');
-            document.getElementById('signupTab').classList.remove('border-purple-600', 'text-purple-600');
-            document.getElementById('signupTab').classList.add('border-transparent', 'text-gray-500');
-        });
-        document.getElementById('signupTab').addEventListener('click', () => {
-            document.getElementById('signupTab').classList.add('border-purple-600', 'text-purple-600');
-            document.getElementById('signupTab').classList.remove('border-transparent', 'text-gray-500');
-            document.getElementById('loginTab').classList.remove('border-purple-600', 'text-purple-600');
-            document.getElementById('loginTab').classList.add('border-transparent', 'text-gray-500');
-        });
-    </script>
 
     <!-- Hero Section -->
     <section
@@ -185,6 +138,21 @@
             class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-7 h-7 flex items-center justify-center">0</span>
     </button>
 
+    <!-- ADD TO CART PE DIKHNE WALA SIGN IN MODAL -->
+    <div id="signInModal"
+        class="fixed inset-0 bg-black/95 backdrop-blur-lg z-[9999] flex items-center justify-center hidden">
+        <div class="bg-white rounded-3xl p-10 max-w-md w-full mx-6 text-center shadow-2xl">
+            <h2 class="text-4xl font-bold mb-8">Sign In to Continue 👟</h2>
+            <button id="googleBtn"
+                class="w-full bg-white border-2 border-gray-300 text-black py-5 rounded-2xl font-bold flex items-center justify-center gap-4 hover:scale-105 transition shadow-lg mb-4">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" class="w-8 h-8">
+                Continue with Google
+            </button>
+            <button id="guestBtn" class="text-purple-600 font-bold text-lg hover:underline">
+                Continue as Guest →
+            </button>
+        </div>
+    </div>
     <script src="js/main.js"></script>
 </body>
 
