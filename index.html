@@ -46,6 +46,81 @@
                 d="M12 3v1m0 16v1m8-9h-1m-16 0H3m16.485-6.928l-.707.707M6.343 17.657l-.707.707m12.02 0l-.707-.707M6.343 6.343l-.707-.707" />
         </svg>
     </button>
+    <!-- ===== FULL SCREEN SIGN IN / SIGN UP MODAL ===== -->
+    <div id="authModal" class="fixed inset-0 bg-black z-[9999] flex items-center justify-center">
+        <div class="max-w-md w-full mx-4">
+            <div class="bg-white dark:bg-gray-900 rounded-3xl shadow-2xl overflow-hidden">
+                <!-- Logo -->
+                <div class="text-center pt-10 pb-6 bg-gradient-to-br from-purple-600 to-pink-600">
+                    <h1 class="text-6xl font-bold text-white">FLYSTEP</h1>
+                    <p class="text-white text-opacity-90 mt-2">Step Into the Future</p>
+                </div>
+
+                <div class="p-10">
+                    <h2 class="text-3xl font-bold text-center mb-8">Welcome Back 👟</h2>
+
+                    <!-- Tabs -->
+                    <div class="flex mb-8">
+                        <button id="loginTab"
+                            class="flex-1 py-3 text-lg font-semibold border-b-4 border-purple-600 text-purple-600">Sign
+                            In</button>
+                        <button id="signupTab"
+                            class="flex-1 py-3 text-lg font-semibold border-b-4 border-transparent text-gray-500">Sign
+                            Up</button>
+                    </div>
+
+                    <!-- Form -->
+                    <div id="authForm">
+                        <input type="email" placeholder="Email"
+                            class="w-full px-6 py-4 rounded-xl bg-gray-100 dark:bg-gray-800 mb-4 text-lg" required>
+                        <input type="password" placeholder="Password"
+                            class="w-full px-6 py-4 rounded-xl bg-gray-100 dark:bg-gray-800 mb-6 text-lg" required>
+
+                        <button onclick="closeAuthModal()"
+                            class="w-full py-5 bg-gradient-to-r from-purple-600 to-pink-600 text-white text-xl font-bold rounded-xl hover:scale-105 transition transform">
+                            Continue Shopping
+                        </button>
+
+                        <div class="text-center mt-6">
+                            <button onclick="closeAuthModal()" class="text-gray-500 hover:text-purple-600 underline">
+                                Skip for now →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ye script bhi body ke end mein daal do (main.js se pehle) -->
+    <script>
+        function closeAuthModal() {
+            document.getElementById('authModal').style.display = 'none';
+            // Agar user pehli baar aaya hai to localStorage mein mark kar do taaki dobara na dikhe
+            localStorage.setItem('flystepVisited', 'true');
+        }
+
+        // Agar user pehle aa chuka hai to modal hide kar do
+        window.onload = function () {
+            if (localStorage.getItem('flystepVisited') === 'true') {
+                document.getElementById('authModal').style.display = 'none';
+            }
+        }
+
+        // Tab switching (optional swag)
+        document.getElementById('loginTab').addEventListener('click', () => {
+            document.getElementById('loginTab').classList.add('border-purple-600', 'text-purple-600');
+            document.getElementById('loginTab').classList.remove('border-transparent', 'text-gray-500');
+            document.getElementById('signupTab').classList.remove('border-purple-600', 'text-purple-600');
+            document.getElementById('signupTab').classList.add('border-transparent', 'text-gray-500');
+        });
+        document.getElementById('signupTab').addEventListener('click', () => {
+            document.getElementById('signupTab').classList.add('border-purple-600', 'text-purple-600');
+            document.getElementById('signupTab').classList.remove('border-transparent', 'text-gray-500');
+            document.getElementById('loginTab').classList.remove('border-purple-600', 'text-purple-600');
+            document.getElementById('loginTab').classList.add('border-transparent', 'text-gray-500');
+        });
+    </script>
 
     <!-- Hero Section -->
     <section

@@ -148,3 +148,99 @@ renderProducts();
 gsap.to(".floating", { y: -30, rotation: 5, duration: 4, ease: "power1.inOut", yoyo: true, repeat: -1 });
 gsap.to(".floating-delay", { y: -40, rotation: -8, duration: 6, ease: "power1.inOut", yoyo: true, repeat: -1 });
 gsap.to(".floating-slow", { y: -50, rotation: 10, duration: 8, ease: "power1.inOut", yoyo: true, repeat: -1 });
+// ===== REAL SIGN IN MODAL - SIRF ADD TO CART PE DIKHEGA =====
+
+const signInModalHTML = `
+<div id="realAuthModal" class="fixed inset-0 bg-black/90 backdrop-blur-lg z-[9999] flex items-center justify-center hidden">
+  <div class="max-w-md w-full mx-6 animate__animated animate__zoomIn">
+    <div class="bg-white dark:bg-gray-900 rounded-3xl shadow-4xl overflow-hidden">
+      <div class="bg-gradient-to-br from-purple-600 via-pink-600 to-red-600 p-10 text-center">
+        <h1 class="text-6xl font-bold text-white mb-3">FLYSTEP</h1>
+        <p class="text-xl text-white/90">One step away from owning it 👟</p>
+      </div>
+
+      <div class="p-10">
+        <h2 class="text-4xl font-bold text-center mb-8">Sign in to Continue</h2>
+        
+        <button onclick="closeRealModal()" class="w-full mb-4 bg-black text-white py-5 rounded-2xl text-xl font-bold hover:scale-105 transition transform flex items-center justify-center gap-4">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" class="w-7 h-7">
+          Continue with Google
+        </button>
+
+        <button onclick="closeRealModal()" class="w-full mb-6 bg-blue-600 text-white py-5 rounded-2xl text-xl font-bold hover:scale-105 transition transform flex items-center justify-center gap-4">
+          <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          Continue with Facebook
+        </button>
+
+        <div class="text-center">
+          <button onclick="closeRealModal()" class="text-gray-500 hover:text-purple-600 font-medium text-lg">
+            Continue as Guest →
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+// Modal ko body mein add kar do
+document.body.insertAdjacentHTML('beforeend', signInModalHTML);
+
+function showSignInModal() {
+    document.getElementById('realAuthModal').classList.remove('hidden');
+    document.body.style.overflow = 'hidden'; // scroll lock
+}
+
+function closeRealModal() {
+    document.getElementById('realAuthModal').classList.add('hidden');
+    document.body.style.overflow = 'auto';
+
+    // Pehli baar sign-in skip ya kiya to yaad rakhna
+    localStorage.setItem('flystepGuest', 'true');
+}
+
+// Ab Add to Cart function ko modify kar do (ye purana wala replace kar do)
+window.addToCart = function (index) {
+    // Agar user ne pehle se guest mode choose kiya hai to direct add kar do
+    if (localStorage.getItem('flystepGuest') === 'true') {
+        proceedToAddToCart(index);
+        return;
+    }
+
+    // Nahi to modal dikhao
+    showSignInModal();
+
+    // Ek baar modal khula to next time direct add hone chahiye (guest mode on)
+    document.querySelectorAll('#realAuthModal button').forEach(btn => {
+        btn.onclick = function () {
+            closeRealModal();
+            localStorage.setItem('flystepGuest', 'true');
+            proceedToAddToCart(index); // ab add kar do
+        };
+    });
+};
+
+// Actual add to cart logic alag function mein
+function proceedToAddToCart(index) {
+    const shoe = shoeDatabase[index];
+    const existing = cart.find(item => item.name === shoe.name);
+    if (existing) existing.qty++;
+    else cart.push({ ...shoe, qty: 1 });
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+
+    gsap.to('#cartBtn', { scale: 1.4, duration: 0.3, yoyo: true, repeat: 1 });
+    alert(`"${shoe.name}" added to cart! 🔥`);
+}
+// Ye purana button code hata do aur ye daal do (modal ke andar)
+
+<button onclick="signInWithGoogle()" class="w-full mb-4 bg-white border-2 border-gray-300 text-black py-5 rounded-2xl text-xl font-bold hover:scale-105 transition transform flex items-center justify-center gap-4 shadow-lg">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" class="w-7 h-7">
+  Continue with Google
+</button>
+
+<button onclick="signInWithFacebook()" class="w-full mb-6 bg-blue-600 text-white py-5 rounded-2xl text-xl font-bold hover:scale-105 transition transform flex items-center justify-center gap-4 shadow-lg">
+  <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+  Continue with Facebook
+</button>
