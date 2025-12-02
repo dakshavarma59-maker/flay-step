@@ -1,8 +1,8 @@
 // ===== GOOGLE SIGN IN + EMAIL ORDER (ADD THIS AT TOP OF main.js) =====
 const firebaseConfig = {
   apiKey: "AIzaSyB7R7vJIvW2p6qGnnhSkpSQjXyodX_cMD4",
-  authDomain: "https://flay-step.vercel.app/",
-  projectId: "flystep-shoes",
+  authDomain: "https://accounts.google.com/o/oauth2/auth",
+  projectId: "flay-step-480011",
 };
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
