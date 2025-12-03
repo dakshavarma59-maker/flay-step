@@ -5,8 +5,8 @@ const firebaseConfig = {
   projectId: "flay-step-480011",
 };
 firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-const googleProvider = new firebase.auth.GoogleAuthProvider();
+const auth = firebase.auth("https://accounts.google.com/o/oauth2/auth");
+const googleProvider = new firebase.auth.GoogleAuthProvider("https://www.googleapis.com/oauth2/v1/certs");
 
 let pendingShoeIndex = null;
 
