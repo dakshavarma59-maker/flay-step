@@ -1,12 +1,19 @@
 // ===== GOOGLE SIGN IN + EMAIL ORDER (ADD THIS AT TOP OF main.js) =====
 const firebaseConfig = {
+  auth_uri: "https://accounts.google.com/o/oauth2/auth",
+  token_uri: "https://oauth2.googleapis.com/token",
+  auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
+  client_secret: "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",
+  client_id: "978202572292-7l9aaobo48et6rt75295nnlk3bg4kvsg.apps.googleusercontent.com",
+  redirect_uris: "https://flay-step-git-main-dakshavarma59-makers-projects.vercel.app",
+  javascript_origins: "https://flay-step-git-main-dakshavarma59-makers-projects.vercel.app",
   apiKey: "AIzaSyB7R7vJIvW2p6qGnnhSkpSQjXyodX_cMD4",
-  authDomain: "https://accounts.google.com/o/oauth2/auth",
+  authDomain: "https://flay-step-git-main-dakshavarma59-makers-projects.vercel.app",
   projectId: "flay-step-480011",
 };
 firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth("https://accounts.google.com/o/oauth2/auth");
-const googleProvider = new firebase.auth.GoogleAuthProvider("https://www.googleapis.com/oauth2/v1/certs");
+const auth = firebase.auth();
+const googleProvider = new firebase.auth.GoogleAuthProvider();
 
 let pendingShoeIndex = null;
 
