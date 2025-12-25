@@ -8,7 +8,7 @@ $clientID = '<252520616112-78q5kai338t24oeh8bki8mfh32op8uaq.apps.googleuserconte
 $clientSecret = '<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>';
 $redirectUri = '<https://flay-step.vercel.app>';
 
-// create Client Request to access Google API
+// create Client Request to access Google API 
 $client = new Google_Client();
 $client->setClientId($clientID);
 $client->setClientSecret($clientSecret);
@@ -21,7 +21,7 @@ if (isset($_GET['code'])) {
   $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
   $client->setAccessToken($token['access_token']);
 
-  // get profile info
+  // get profile info 
   $google_oauth = new Google_Service_Oauth2($client);
   $google_account_info = $google_oauth->userinfo->get();
   $email =  $google_account_info->email;

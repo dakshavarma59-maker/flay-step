@@ -76,6 +76,14 @@
                 location.href = 'index.html';
             });
         }
+        // Ye line placeOrder() function ke andar alert ke pehle daal dena
+        const allOrders = JSON.parse(localStorage.getItem('allOrders') || '[]');
+        allOrders.push({
+            name, phone, email, address, payment,
+            items: cart.map(i => i.name).join(', '),
+            total, date: new Date().toLocaleString('en-IN')
+        });
+        localStorage.setItem('allOrders', JSON.stringify(allOrders));
     </script>
 </body>
 

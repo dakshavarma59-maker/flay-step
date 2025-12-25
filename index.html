@@ -55,7 +55,7 @@
         }
     })(window.location);
 </script>
-<link rle="cart.html" href="cart.html">
+<link rel="cart.html" href="cart.html">
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@300;500;700&display=swap"
     rel="stylesheet">
 <link rel="stylesheet" href="css/style.css" />
@@ -63,6 +63,7 @@
 <link rel="package.json" href="package.json">
 <link rel="client_secret_2_978202572292-7l9aaobo48et6rt75295nnlk3bg4kvsg.apps.googleusercontent.com.json"
     href="client_secret_2_978202572292-7l9aaobo48et6rt75295nnlk3bg4kvsg.apps.googleusercontent.com.json">
+<link rel="admin.html" href="admin.html">
 <style>
     /*internal css*/
 </style>
@@ -139,23 +140,149 @@
         <span id="cartCount"
             class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-7 h-7 flex items-center justify-center">0</span>
     </button>
+    <!-- ULTIMATE LOGIN + SIGNUP ANIMATED MODAL (Floating Shoes) -->
+    <div id="authModal" class="fixed inset-0 z-[9999] flex items-center justify-center hidden overflow-hidden">
+        <!-- Animated Background with Floating Shoes -->
+        <div class="absolute inset-0 bg-black"></div>
+        <div class="absolute inset-0 opacity-40">
+            <img src="https://violent-brown-zffmtswwfa-epcxugg2qy.edgeone.dev/mojtaba-mosayebzadeh-WtHNuoYQLgs-unsplash-removebg-preview.png"
+                class="absolute top-10 left-5 w-64 animate-float-slow">
+            <img src="https://frail-yellow-xbgw9sgfvu-z6ip5hauei.edgeone.dev/photo-1546200843-d3a4e1e0103d-removebg-preview_imgupscaler,ai_General_2K-Picsart-BackgroundRemover.jpg"
+                class="absolute bottom-10 right-5 w-80 animate-float-reverse">
+            <img src="https://slight-yellow-fsdricfwes-1rl9fffqce.edgeone.dev/oguz-yagiz-kara-oPcLoj-pjZE-unsplash-removebg-preview_imgupscaler,ai_General_2K-Picsart-BackgroundRemover.jpg"
+                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 animate-float-center">
+        </div>
 
-    <!-- ADD TO CART PE DIKHNE WALA SIGN IN MODAL -->
-    <div id="signInModal"
-        class="fixed inset-0 bg-black/95 backdrop-blur-lg z-[9999] flex items-center justify-center hidden">
-        <div class="bg-white rounded-3xl p-10 max-w-md w-full mx-6 text-center shadow-2xl">
-            <h2 class="text-4xl font-bold mb-8">Sign In to Continue 👟</h2>
-            <button id="googleBtn"
-                class="w-full bg-white border-2 border-gray-300 text-black py-5 rounded-2xl font-bold flex items-center justify-center gap-4 hover:scale-105 transition shadow-lg mb-4">
-                <img src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-icon-png-transparent-background-osteopathy-16.png"
-                    class="w-8 h-8">
-                Continue with Google
-            </button>
-            <button id="guestBtn" class="text-purple-600 font-bold text-lg hover:underline">
-                Continue as Guest →
-            </button>
+        <div class="relative z-10 max-w-md w-full mx-6">
+            <div
+                class="bg-gradient-to-b from-purple-900/90 to-black/90 backdrop-blur-3xl rounded-3xl border border-purple-500/50 shadow-5xl overflow-hidden">
+
+                <!-- Header -->
+                <div class="text-center pt-12 pb-8">
+                    <h1 class="text-7xl font-bold text-white mb-3 tracking-tighter">FLYSTEP</h1>
+                    <p class="text-purple-300 text-xl">Step Into Greatness</p>
+                </div>
+
+                <!-- Tabs -->
+                <div class="flex justify-center gap-1 px-8 mb-8">
+                    <button id="loginTab"
+                        class="flex-1 py-4 text-xl font-bold text-white border-b-4 border-purple-500 transition-all">Login</button>
+                    <button id="signupTab"
+                        class="flex-1 py-4 text-xl font-bold text-gray-500 border-b-4 border-transparent transition-all">Sign
+                        Up</button>
+                </div>
+
+                <div class="px-10 pb-12 space-y-6">
+
+                    <!-- Google & Phone Buttons (Common) -->
+                    <div class="space-y-4">
+                        <button onclick="googleAuth()"
+                            class="w-full bg-white text-black py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-4 hover:scale-105 transition shadow-2xl">
+                            <img src="data:image/png;base64,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"
+                                class="w-8 h-8">
+                            Continue with Google
+                        </button>
+
+                        <button onclick="phoneAuth()"
+                            class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-4 hover:scale-105 transition shadow-2xl">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.22 11.11 11.11 0 003.45.55 1 1 0 011 1v3.5a1 1 0 01-1 1A18 18 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.11 11.11 0 00.55 3.45 1 1 0 01-.22 1.11l-2.2 2.2z" />
+                            </svg>
+                            Continue with Phone
+                        </button>
+                    </div>
+
+                    <div class="text-center text-gray-400">or</div>
+
+                    <!-- Email/Password Form -->
+                    <form action="save.php" method="post">
+                        <div class="space-y-5">
+                            <input type="email" name="email" id="authEmail" placeholder="Email address"
+                                class="w-full px-6 py-5 bg-white/10 border border-purple-500/50 rounded-2xl text-white placeholder-gray-400 text-lg">
+                            <input type="password" name="password" id="authPass" placeholder="Password"
+                                class="w-full px-6 py-5 bg-white/10 border border-purple-500/50 rounded-2xl text-white placeholder-gray-400 text-lg">
+
+                            <div id="confirmPassField" class="hidden">
+                                <input type="password" id="authConfirmPass" placeholder="Confirm Password"
+                                    class="w-full px-6 py-5 bg-white/10 border border-purple-500/50 rounded-2xl text-white placeholder-gray-400 text-lg">
+                            </div>
+
+                            <button id="authSubmitBtn"
+                                class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-6 rounded-2xl font-bold text-xl hover:scale-105 transition shadow-2xl">
+                                Login
+                            </button>
+                        </div>
+
+                        <!-- Guest -->
+                        <div class="text-center pt-6">
+                            <button onclick="continueAsGuest()"
+                                class="text-gray-400 hover:text-white font-medium text-lg">
+                                Continue as Guest →
+                                <!-- SECRET ADMIN BUTTON (Sirf tu dekh sakta hai) -->
+                                <div class="text-center pt-8">
+                                    <button onclick="showAdminLogin()"
+                                        class="text-xs text-gray-600 hover:text-purple-400 font-medium">
+                                        ⚡ Admin Access ⚡
+                                    </button>
+                                </div>
+                            </button>
+                        </div>
+                </div>
+            </div>
         </div>
     </div>
+
+    <!-- Animation CSS -->
+    <style>
+        @keyframes float-slow {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0)
+            }
+
+            50% {
+                transform: translateY(-50px) rotate(8deg)
+            }
+        }
+
+        @keyframes float-reverse {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0)
+            }
+
+            50% {
+                transform: translateY(50px) rotate(-12deg)
+            }
+        }
+
+        @keyframes float-center {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0) scale(1)
+            }
+
+            50% {
+                transform: translateY(-40px) rotate(15deg) scale(1.15)
+            }
+        }
+
+        .animate-float-slow {
+            animation: float-slow 10s ease-in-out infinite;
+        }
+
+        .animate-float-reverse {
+            animation: float-reverse 12s ease-in-out infinite;
+        }
+
+        .animate-float-center {
+            animation: float-center 14s ease-in-out infinite;
+        }
+    </style>
     <script src="js/main.js"></script>
 </body>
 
